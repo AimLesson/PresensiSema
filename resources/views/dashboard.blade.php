@@ -11,21 +11,11 @@
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Nama
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                NIM
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                TimeStamp
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Jenis Presensi
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Gambar
-                            </th>
+                            <th scope="col" class="px-6 py-3">Nama</th>
+                            <th scope="col" class="px-6 py-3">NIM</th>
+                            <th scope="col" class="px-6 py-3">TimeStamp</th>
+                            <th scope="col" class="px-6 py-3">Jenis Presensi</th>
+                            <th scope="col" class="px-6 py-3">Gambar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,15 +27,9 @@
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $p->name }}
                                 </th>
-                                <td class="px-6 py-4">
-                                    {{ $p->nim }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $p->timestamp }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $p->jenis }}
-                                </td>
+                                <td class="px-6 py-4">{{ $p->nim }}</td>
+                                <td class="px-6 py-4">{{ $p->timestamp }}</td>
+                                <td class="px-6 py-4">{{ $p->jenis }}</td>
                                 <td class="px-6 py-4">
                                     <img src="{{ asset('storage/' . $p->kamera) }}" alt="Image"
                                         class="w-16 h-16 object-cover rounded cursor-pointer" onclick="showModal('{{ asset('storage/' . $p->kamera) }}')">
@@ -76,5 +60,20 @@
             document.getElementById('imageModal').classList.add('hidden');
             document.getElementById('modalImage').src = "";
         }
+
+        $(document).ready(function() {
+            $('table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Presensi Data',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+        });
     </script>
 </x-app-layout>

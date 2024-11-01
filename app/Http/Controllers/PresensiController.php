@@ -79,4 +79,18 @@ class PresensiController extends Controller
             return redirect()->back()->withErrors(['error' => 'Failed to save the form data. Please try again.']);
         }
     }
+
+    public function storetype(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    \App\Models\AttendanceType::create([
+        'name' => $request->name,
+    ]);
+
+    return redirect()->back()->with('success', 'Kegiatan added successfully!');
+}
+
 }
