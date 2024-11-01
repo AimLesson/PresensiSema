@@ -50,7 +50,7 @@
                                     {{ $p->jenis }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $p->kamera }}
+                                    <img src="{{ asset('storage/' . $p->kamera) }}" alt="Image" class="w-16 h-16 object-cover rounded">
                                 </td>
                             </tr>
                     </tbody>
