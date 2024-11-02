@@ -13,7 +13,19 @@
 
     <style>
         /* Custom styling for hidden webcam feed */
-        #webcam { display: none; } /* Hide actual webcam feed, only needed for tracking */
+        #webcam-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: #1a202c;
+            border-radius: 0.5rem;
+        }
+        #webcam {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100 font-sans">
@@ -21,11 +33,12 @@
     <!-- Card Container for Webcam Feed -->
     <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
         <h2 class="text-center text-2xl font-semibold text-gray-700 mb-4">Eye Detection</h2>
-        <div class="relative w-full h-64 md:h-80 bg-gray-900 rounded-lg overflow-hidden">
-            <!-- Webcam feed with styling and centering -->
-            <video id="webcam" autoplay playsinline class="w-full h-full object-cover"></video>
-            <div class="absolute top-0 left-0 w-full h-full border-4 border-blue-500 pointer-events-none"></div>
+
+        <!-- Webcam Feed Container -->
+        <div id="webcam-container" class="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
+            <video id="webcam" autoplay playsinline></video>
         </div>
+
         <p class="mt-4 text-center text-gray-500">Eye Detection in Progress...</p>
     </div>
 
