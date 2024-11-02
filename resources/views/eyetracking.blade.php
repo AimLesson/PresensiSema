@@ -16,13 +16,17 @@
         #webcam { display: none; } /* Hide actual webcam feed, only needed for tracking */
     </style>
 </head>
-<body class="flex flex-col items-center justify-center h-screen bg-gray-100 font-sans">
+<body class="flex items-center justify-center h-screen bg-gray-100 font-sans">
 
-    <!-- Webcam feed with styling and centering -->
-    <div class="relative">
-        <video id="webcam" autoplay playsinline class="w-64 h-48 rounded-lg shadow-lg md:w-80 md:h-60 lg:w-96 lg:h-72 bg-gray-900"></video>
-        <div class="absolute top-0 left-0 w-full h-full border-4 border-blue-500 rounded-lg pointer-events-none"></div>
-        <p class="mt-2 text-gray-500 text-center">Eye Detection in Progress...</p>
+    <!-- Card Container for Webcam Feed -->
+    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-4">Eye Detection</h2>
+        <div class="relative w-full h-64 md:h-80 bg-gray-900 rounded-lg overflow-hidden">
+            <!-- Webcam feed with styling and centering -->
+            <video id="webcam" autoplay playsinline class="w-full h-full object-cover"></video>
+            <div class="absolute top-0 left-0 w-full h-full border-4 border-blue-500 pointer-events-none"></div>
+        </div>
+        <p class="mt-4 text-center text-gray-500">Eye Detection in Progress...</p>
     </div>
 
     <!-- Modal for displaying eye health advice -->
