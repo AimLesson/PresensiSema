@@ -44,25 +44,12 @@
         window.onload = async function() {
             await webgazer.setGazeListener((data, timestamp) => {
                 if (data) {
-                    // Check if gaze is detected in a certain area (e.g., screen center)
-                    const { x, y } = data;
-                    if (isEyeInCenter(x, y)) {
-                        generateRandomQuote();
-                        webgazer.pause(); // Pause tracking after generating a quote
-                    }
+                    // Directly generate a quote as soon as eyes are detected
+                    generateRandomQuote();
+                    webgazer.pause(); // Pause tracking after generating a quote
                 }
             }).begin();
         };
-
-        // Define the "center" area for eye detection
-        function isEyeInCenter(x, y) {
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            const range = 50; // Define the center range
-
-            return (x > centerX - range && x < centerX + range &&
-                    y > centerY - range && y < centerY + range);
-        }
 
         // Generate random quote and display in modal
         function generateRandomQuote() {
