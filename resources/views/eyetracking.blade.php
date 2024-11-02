@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Eye-Detection with Quote Generation</title>
+    <title>Eye-Health Detection</title>
 
     <!-- Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
@@ -12,22 +12,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.5.3/flowbite.min.js"></script>
 
     <style>
+        /* Custom styling for hidden webcam feed */
         #webcam { display: none; } /* Hide actual webcam feed, only needed for tracking */
     </style>
 </head>
-<body class="flex items-center justify-center h-screen bg-gray-100 font-sans">
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 font-sans">
 
-    <!-- Webcam feed for eye tracking -->
-    <video id="webcam" autoplay playsinline width="320" height="240"></video>
+    <!-- Webcam feed with styling and centering -->
+    <div class="relative">
+        <video id="webcam" autoplay playsinline class="w-64 h-48 rounded-lg shadow-lg md:w-80 md:h-60 lg:w-96 lg:h-72 bg-gray-900"></video>
+        <div class="absolute top-0 left-0 w-full h-full border-4 border-blue-500 rounded-lg pointer-events-none"></div>
+        <p class="mt-2 text-gray-500 text-center">Eye Detection in Progress...</p>
+    </div>
 
-    <!-- Modal for quote output -->
+    <!-- Modal for displaying eye health advice -->
     <div id="modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="relative w-full h-full max-w-md md:h-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="p-4 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Your Quote</h3>
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Eye Health Advice</h3>
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
@@ -45,13 +50,13 @@
     <script src="https://webgazer.cs.brown.edu/webgazer.js"></script>
 
     <script>
-        // Quotes array
-        const quotes = [
-            "Believe you can and you're halfway there.",
-            "Don't watch the clock; do what it does. Keep going.",
-            "Success is not how high you have climbed, but how you make a positive difference to the world.",
-            "The only limit to our realization of tomorrow is our doubts of today.",
-            "Act as if what you do makes a difference. It does."
+        // Eye health advice array
+        const eyeAdvice = [
+            "It seems like you may have nearsightedness. Consider consulting an eye specialist.",
+            "Are you experiencing blurred vision? It could be a sign of farsightedness.",
+            "Frequent screen use detected. Remember to take breaks and practice the 20-20-20 rule.",
+            "Dry eyes? Try to blink more frequently or consider using eye drops.",
+            "You might have astigmatism symptoms. A professional eye exam is recommended."
         ];
 
         // Get elements
@@ -66,8 +71,8 @@
                 await webgazer.setGazeListener((data, timestamp) => {
                     if (data) {
                         console.log("Gaze data detected:", data); // Log gaze data
-                        generateRandomQuote();
-                        webgazer.pause(); // Pause tracking after generating a quote
+                        generateRandomAdvice();
+                        webgazer.pause(); // Pause tracking after generating advice
                     } else {
                         console.log("No gaze data available yet.");
                     }
@@ -79,11 +84,11 @@
             }
         };
 
-        // Generate random quote and display in modal
-        function generateRandomQuote() {
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            console.log("Displaying quote:", randomQuote); // Log the selected quote
-            quoteText.textContent = randomQuote;
+        // Generate random eye health advice and display in modal
+        function generateRandomAdvice() {
+            const randomAdvice = eyeAdvice[Math.floor(Math.random() * eyeAdvice.length)];
+            console.log("Displaying advice:", randomAdvice); // Log the selected advice
+            quoteText.textContent = randomAdvice;
             showModal();
         }
 
