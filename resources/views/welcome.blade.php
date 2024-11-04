@@ -7,12 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Senat Mahasiswa</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+        .background-section {
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-gray-900 background-section">
         <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-            <div class="card border rounded-lg p-4">
+            <div class="card border bg-white rounded-lg p-4">
                 <h2 class="mb-4 text-2xl text-gray-900 dark:text-white text-center">Form Presensi Senat Mahasiswa</h2>
                 <form action="{{ route('presensi.submit') }}" method="POST">
                     @csrf
@@ -66,11 +74,15 @@
                                 class="border rounded-lg"></video>
                             <input type="hidden" name="kamera" id="kamera-input">
                         </div>
-                        <div class="mt-3">
+                        <div class="mt-3 flex">
                             <button type="submit"
-                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary-700 border rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 border rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                                 Submit
                             </button>
+                            <a href="{{ route('dashboard') }}"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 border rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-800">
+                                Admin
+                            </a>
                         </div>
                     </div>
                 </form>
